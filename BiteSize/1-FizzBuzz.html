@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+<div class="col-12">
+<!-- start post -->
+
+
+
+
+
+
+
+
+
+
+
+<p>So for FizzBuzz, the goal is:</p>
+<ul>
+  <li>To take an array of numbers</li>
+  <li>As you are iterating through the array, if the current number is divisble by 3, print "Fizz"</li>
+  <li>If the number is divisible by 5, print "Buzz"</li>
+  <li>If the number is divisible by both 3 AND 5, print "FizzBuzz"</li>
+</ul>
+
+
+    <div class="row">
+      <div class="vertical-align col-5">
+        <p>Your first instinct may lead you to try something like this to begin with:</p>
+        <p>Because it accomplishes and <em>will do what is described!</em>, it will output "Fizz" when it's divisible by 3, it will output "Buzz" when it is divisible by 5, and it will output "FizzBuzz" when the number is divisible by both 3 and 5</p>
+      </div>
+      <div class="col-7">
+    <pre>
+      <code class="language-javascript">
+    var nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    function fizzBuzz(nums) {
+      for (var i = 0; i < nums.length; i++) {
+        if (nums[i] % 3 === 0) console.log(`Fizz`);
+        else if (nums[i] % 5 === 0) console.log(`Buzz`);
+        else if (nums[i] % 5 === 0 && nums[i] % 3 === 0) console.log(`FizzBuzz`);
+        else console.log(`${nums[i]}`);
+      }
+    }
+    fizzBuzz(nums);
+      </code>
+    </pre>
+      </div>
+    </div>
+    <p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end post -->
+</div>
+
+
+
+
+
+
+    </div>
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="../libs/prism.css" rel="stylesheet" />
+    <script src="../libs/prism.js"></script>
+    <link rel="stylesheet" href="../libs/style.css" />
+  </body>
+</html>
