@@ -7,6 +7,7 @@
     - For Example 'Z' moved over by two, should result in 'B'
     - and if we have 'B', and we input a '-2', we should result in getting 'Z' back
   3) The algorithm should allow both lower case and upper case letters.
+  4) Make sure to take care of spaces! Do not move those over by the number.
 */
 function caesarCipher(str, num) {
   var lowerCaseString = str.toLowerCase();
