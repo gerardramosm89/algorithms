@@ -1,3 +1,7 @@
+/*
+	It's important to know about the "call-stack"
+*/
+
 function factorial(num) {
 	if (num === 1) {
 		return 1
