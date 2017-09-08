@@ -10,17 +10,30 @@
   4) Make sure to take care of spaces! Do not move those over by the number.
 */
 function caesarCipher(str, num) {
+  num = num % 26;
   var lowerCaseString = str.toLowerCase();
-  var validCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
   console.log(lowerCaseString);
   var newString = '';
   for (var i = 0; i < lowerCaseString.length; i++) {
-    var currentLetter = lowerCaseString[i];    
+    var currentLetter = lowerCaseString[i];
+    console.log(`${currentLetter}: ${alphabet.indexOf(currentLetter)}`)
     if (currentLetter === ' ') {
       newString += currentLetter;
       continue; // Important to note here that when the loop hits this line, it goes to the next iteration, ignoring the rest of the code below this one
     }
+    var currentIndex = alphabet.indexOf(currentLetter);
+    var newIndex = currentIndex + num;
+
+    if (newIndex > 25) newIndex = newIndex - 26;
+    if (newIndex < 0) newIndex = 26 + newIndex;
+    console.log(`current index of letter is: ${currentIndex}, the new index is: ${newIndex}`);
+    if (str[i] === lowerCaseString[i].toUpperCase()) {
+      newString += alphabet[newIndex].toUpperCase();
+    }
+    else newString += alphabet[newIndex];
   }
+  console.log('final new string is: ', newString);
 }
 
-caesarCipher('zoo kee per ', 2);
+caesarCipher('ZOo kee peR ', -300);
