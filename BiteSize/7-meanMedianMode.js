@@ -37,9 +37,12 @@ function getMode(array) {
 	var modeObj = {};
 	var modes = [];
 	array.map(num => {
-		if (!modeObj[num]) modeObj[num] = 0;
-		else modeObj[num]++;
+		if (!modeObj[num]) {
+			modeObj[num] = 1;
+		}
+		else modeObj[num] = modeObj[num] + 1;
 		var maxFrequency = 0;
+		console.log('modeObj is: ', modeObj)
 		for (var num in modeObj) {
 			if (modeObj[num] > maxFrequency) {
 				modes = [ num ];
@@ -54,4 +57,4 @@ function getMode(array) {
 	return modes;
 }
 
-console.log(meanMediumMode([1,2,3,4,5,4,6,1]));
+console.log(meanMediumMode([9,10,23,10,23,9]));
