@@ -10,6 +10,8 @@ function mergeSort(arr) {
   var midIndex = Math.floor(arr.length / 2);
   var firstHalf = arr.slice(0, midIndex);
   var secondHalf = arr.slice(midIndex, );
+
+  return merge(mergeSort(firstHalf), mergeSort(secondHalf));
 }
 
 function merge(array1, array2) {
