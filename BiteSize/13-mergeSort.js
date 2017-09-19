@@ -1,23 +1,25 @@
 /*
   Merge sort is a tricky algorithm
 */
+var arr = [11,7,4,1,15,12,3];
 
 function mergeSort(arr) {
-  // take ina  single, unsorted array as a parameter
-  // split the array into two halves
-
+  console.log('-- Calling Merge Sort --');
   if (arr.length < 2) return arr;
+  console.log('-- Splitting in Half');
   var midIndex = Math.floor(arr.length / 2);
   var firstHalf = arr.slice(0, midIndex);
-  var secondHalf = arr.slice(midIndex, );
-
+  var secondHalf = arr.slice(midIndex);
+  console.log('firstHalf is: ', firstHalf);
+  console.log('secondHalf is: ', secondHalf);
   return merge(mergeSort(firstHalf), mergeSort(secondHalf));
 }
 
 function merge(array1, array2) {
-  // Takes in two sorted arrays as parameters
-  // Merges those sorted arrays into one sorted array
-  // Returns one sorted array
+  var result = [];
+  console.log('-- Calling Merge --')
+  console.log('array1 is: ', array1);
+  console.log('array2 is: ', array2);
   while (array1.length && array2.length) {
     var minElem;
     if (array1[0] < array2[0]) minElem = array1.shift();
@@ -26,6 +28,10 @@ function merge(array1, array2) {
   }
   if (array1.length) result = result.concat(array1);
   else if (array2.length) result = result.concat(array2);
-
-  console.log('final result is: ', result);
+  return result;
+}
+try {
+  console.log('mergeSort yields: ', mergeSort(arr));  
+} catch(e) {
+  console.log('ERROR: ', e);
 }
