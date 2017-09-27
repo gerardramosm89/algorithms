@@ -1,7 +1,7 @@
 /*
   Merge sort is a tricky algorithm
 */
-var arr = [11,7,4,1,15,12,3];
+var arr = [5,4,3,2,1];
 
 function mergeSort(arr) {
   console.log('-- Calling Merge Sort --');
