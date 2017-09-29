@@ -17,7 +17,8 @@
         <p>So here's my take on the Sieve of Eratosthenes, which I think is one hell of a name for an algorithm. Not sure where it came from but let's just get to the nitty gritty</p>
         <h5>Purpose:</h5>
         <h6>Find all of the Prime numbers, up to given number</h6>
-        <br />
+        <p>And also just to note, a "Prime" number is a number in which the only multiple to achieve that number would be the number <strong>1</strong> and itself. Such as 7, because the only way to multiply 2 numbers and achieve the number <strong>7</strong> is <code>1 * 7</code></p>
+        
         <h5>For Example:</h5>
         <p>Running our function</p>
 <pre>
@@ -27,17 +28,102 @@
     }
 
     // Example output would be:
-    sieveOfEratosthenes(20)
+    sieveOfEratosthenes(10)
 
     // Would return:
-    [2,3,5,7,11,13,17,19]
+    [2,3,5,7]
   </code>
 </pre>
       <br />
       <h5>Our Approach:</h5>
-      <p>In this example, we are going to start off with the array from [0, ..., 20]</p>
-      <p>What we can do now is </p>
-        
+      <p>In this example, we are going to start off with the array from [0, ..., 10]</p>
+      <p>Starting off with, let's make the indexes represent our numbers, and the values, contained by each index in the array, contain <code>true</code> if it is prime, and <code>false</code> if it is not prime</p>
+      
+      <pre>
+        <code class="language-javascript content1">
+    array[1] = true
+    array[2] = true
+    array[3] = true
+    array[4] = true
+    array[5] = true
+    array[6] = true
+    array[7] = true
+    array[8] = true
+    array[9] = true
+    array[10] = true
+        </code>
+      </pre>
+      <p>So we start off with an array where we don't know anything yet, we initialize our array to all be <code>true</code>, then after initializing all of our values to be true, we are going to implement our algorithm to find all of the values that are NOT prime, and mark them as <code>false</code> as we go along.</p>
+      <p>To find out whether or not a number is prime, we are going to take the multiples of each index, up to the *square root* of the number we're trying to find prime numbers of. And if the product of our current number, multiplied by it's subsequent numbers are within the index of our array, we are going to mark it as false. because if we can multiply <code>2 * 3</code> and achieve <code>6</code>, and <code>6</code> is one of our indexes, clearly 6 is not prime!</p>
+      <h5>Step 1:</h5>
+      <ol>
+        <li>Let's initialize our array</li>
+        <li>Mark all values initially as <code>true</code></li>
+        <li>Then mark <strong>1</strong> as <code>false</code> because automatically we know that isn't a prime number</li>
+      </ol>
+
+      <p>So now our function so far looks like this:</p>
+      <pre>
+        <code class="language-javascript">
+  function sieve() {
+    var primes = [];
+    // This will initiate our array
+    for (let i = 1; i <= n; i++ ) {
+      primes[i] = true;
+    }
+    // Setting the number 1 to false, because we know it isn't prime
+    primes[1] = false;
+  }
+        </code>
+      </pre>
+      <h5>Step 2: Now for the important part of the algorithm</h5>
+      <ol>
+        <li>We are going to want to iterate over every index atleast once</li>
+        <li>For the first loop: This is us looking at the main index, we will iterate over our array <strong>until</strong> <code>sqrt(num)</code>, where <code>num</code> is the length we are finding prime numbers up to.</li>
+        <li>For the second loop: This is where we are iterating over the subsequent numbers, we will always start at <strong>2</strong>, and keep multiplying each number by the current index we are looking at, until we overshoot <code>num</code></li>
+      </ol>
+
+      <p>And adding that to our algorithm now looks like this:</p>
+      <pre>
+        <code class="language-javascript">
+    function sieve(n) {
+      // Return all prime numbers up to `num` in an array
+      var primes = [];
+      for (let i = 1; i <= n; i++ ) {
+        primes[i] = true;
+      }
+      primes[1] = false;
+    
+      for (let i = 2; i < Math.sqrt(n); i++) {
+        for (let j = 2; j*i <= n; j++) { // This takes cares of only handling the multiples
+          primes[i * j] = false;
+        }
+      }
+    }
+        </code>
+      </pre>
+      <p>If we were to run this code, it would look like this:</p>
+      <pre>
+        <code class="language-javascript">
+    currently multiplying 2 * 2 = 4
+    i is: 2
+    j is: 3
+    currently multiplying 2 * 3 = 6
+    i is: 2
+    j is: 4
+    currently multiplying 2 * 4 = 8
+    i is: 2
+    j is: 5
+    currently multiplying 2 * 5 = 10
+    i is: 3
+    j is: 2
+    currently multiplying 3 * 2 = 6
+    i is: 3
+    j is: 3
+    currently multiplying 3 * 3 = 9
+        </code>
+      </pre>
+      
       <!-- end post -->
       </div>
     </div>
