@@ -87,13 +87,14 @@
       <pre>
         <code class="language-javascript">
     function sieve(n) {
-      // Return all prime numbers up to `num` in an array
+      // Start Step 1
       var primes = [];
       for (let i = 1; i <= n; i++ ) {
         primes[i] = true;
       }
       primes[1] = false;
-    
+
+      // Start Step 2
       for (let i = 2; i < Math.sqrt(n); i++) {
         for (let j = 2; j*i <= n; j++) { // This takes cares of only handling the multiples
           primes[i * j] = false;
@@ -102,12 +103,16 @@
     }
         </code>
       </pre>
-      <p>If we were to run this code, it would look like this:</p>
+      <p>If we were to run this code, it would look like this during the loops:</p>
       <pre>
         <code class="language-javascript">
     currently multiplying 2 * 2 = 4
     i is: 2
     j is: 3
+    /*
+      Now we do primes[4] = false, because since we were able to get 4 via multiplying 2 * 2, 
+      clearly it is not prime! and we just follow the same logic moving forward
+    */
     currently multiplying 2 * 3 = 6
     i is: 2
     j is: 4
@@ -124,6 +129,38 @@
         </code>
       </pre>
       
+      <p>Now the final step is to just output our results!</p>
+      <h5>Full Code Solution:</h5>
+      <pre>
+        <code class="language-javascript">
+    function sieve(n) {
+      var primes = [];
+      for (let i = 1; i <= n; i++ ) {
+        primes[i] = true;
+      }
+      primes[0] = false;
+      primes[1] = false;
+    
+      for (let i = 2; i < Math.sqrt(n); i++) {
+        for (let j = 2; j*i <= n; j++) {
+          primes[i * j] = false;
+        }
+      }
+      let result = [];
+      primes.map((num, i) => {
+        if (num) result.push(i);
+      });
+    }
+        </code>
+      </pre>
+      <h5>Testing the code:</h5>
+      <pre>
+        <code class="language-javascript">
+    sieve(10);
+    result is:  [ 2, 3, 5, 7 ] <--- booom!
+        </code>
+      </pre>
+      <p>and that's do it for our algorithm to find all Prime numbers up to a given number!</p>
       <!-- end post -->
       </div>
     </div>

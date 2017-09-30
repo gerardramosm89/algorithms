@@ -1,37 +1,19 @@
-function BST(value) {
+function BST(value, left, right) {
   this.value = value;
-  this.left = null;
-  this.right = null;
+  this.left = left;
+  this.right = right;
 }
-
 var bst = new BST(100);
+bst.left = new BST(50, new BST(25), new BST(75));
+bst.right = new BST(200, new BST(150), new BST(350));
 
-BST.prototype.insert = function(value) {
-  if (value <= this.value) {
-    if (!this.left) this.left = new BST(value);
-    else this.left.insert(value);
-  } else if (value > this.value) {
-    if (!this.right) this.right = new BST(value);
-    else this.right.insert(value);
+function isBST(node, min, max) {
+  if (!node) return true;
+  if (max && node.value >= max) return false;
+  else if (min && node.value <= min) return false;
+  else {
+    return isBST(node.left, min, node.value) && isBST(node.right, node.value, max);
   }
-};
-
-bst.insert(50);
-bst.insert(25);
-bst.insert(75);
-bst.insert(200);
-bst.insert(125);
-bst.insert(350);
-
-
-BST.prototype.depthFirstTraversal = function(log) {
-  if (this.left) this.left.depthFirstTraversal(log);
-  if (this.right) this.right.depthFirstTraversal(log);
-  log(this.value);
-};
-function log(value) {
-  console.log(value);
 }
-bst.depthFirstTraversal(log);
 
-// console.log(bst);
+isBST(bst) ? console.log(`It's a valid BST!`) : console.log(`Unfortunately it is not a valid BST`);

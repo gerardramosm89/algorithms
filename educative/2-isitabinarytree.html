@@ -12,9 +12,61 @@
     <div>
       <div class="col-8 offset-2">
       <!-- start post -->
-        <h1>Is it a binary tree</h1>
+        <h1>Is it a Binary Search Tree</h1>
+        <hr />
         <h5>Problem: Given a binary tree, create a function that will return true or false whether or not it is a valid binary tree</h5>
-        <p>Our approach is going to be</p>
+        <p>Before we begin, we have to know what a binary search tree (BST) is. What defines one?</p>
+        <p>A Binary Search Tree is a data structure that essentially has two very important rules:</p>
+        <ol>
+          <li>All the values to the right of any node, has to be greater than any node's value</li>
+          <li>Very similarly, all the values to the left of any node, has to be less than any node's value</li>
+        </ol>
+        <p>For example, the following is an example of a BST:</p>
+        <img class="img-fluid" src="http://mlhq.io/img/Screen%20Shot%202017-09-29%20at%202.13.05%20PM.png" />
+        <p>While the following is <strong>NOT</strong> an example of a BST:</p>
+        <img src="http://mlhq.io/img/Screen%20Shot%202017-09-29%20at%202.14.48%20PM.png" alt="" class="img-fluid">
+        <p>In the above, 125 is on the left branch of our root node <code>100</code>, which violates one of our rules, because 125 being to the left branch of the root "100" branch, it must be <strong>less than</strong> the current value <code>100</code> otherwise it is automatically not a BST.</p>
+        <h5>Our Approach</h5>
+        <p>The only way that would make sense to me to accomplish these checks is to:</p>
+        <ol>
+          <li>Traverse our tree</li>
+          <li>Keep track of our <code>bounds</code> that we need to stay within of.(which is described below)</li>
+          <li>Perform our checks at each node, and at any point where the left leaf is greater than it's <code>parent</code> or the <code>root node</code>'s value</li>
+          <li>or if the right leaf is greater than the <code>root node</code>'s value, or less than it's <code>parent</code>'s value</li>
+        </ol>
+
+        <h5>Implementation:</h5>
+        <p>Starting off with building our Binary Search Tree, we'll construct the tree used in the above diagrams</p>
+        <pre>
+          <code class="language-javascript">
+    function BST(value, left, right) {
+      this.value = value;
+      this.left = left;
+      this.right = right;
+    }
+    var bst = new BST(100);
+    bst.left = new BST(50, new BST(25), new BST(75));
+    bst.right = new BST(200, new BST(150), new BST(350));
+          </code>
+        </pre>
+        
+        <h5>Solution:</h5>
+
+        <pre>
+          <code class="language-javascript">
+function isBST(node, min, max) {
+  if (!node) return true;
+  if (max && node.value >= max) return false;
+  else if (min && node.value <= min) return false;
+  else {
+    return isBST(node.left, min, node.value) && isBST(node.right, node.value, max);
+  }
+}
+
+isBST(bst) ? console.log(`It's a valid BST!`) : console.log(`Unfortunately it is not a valid BST`);
+          </code>
+        </pre>
+        
       <!-- end post -->
       </div>
     </div>
