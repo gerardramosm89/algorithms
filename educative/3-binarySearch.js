@@ -13,5 +13,10 @@ function binarySearch(arr, min, max, val) {
     return arr[mid];
   }
 }
-
-console.log(binarySearch(arr, 0, arr.length - 1, 47));
+var val = 47;
+var bSearch = binarySearch(arr, 0, arr.length - 1, val);
+if (bSearch !== -1) {
+  console.log(`Value found! ${val} is in the array`);
+} else {
+  console.log(`Value ${val} is not in the array`);
+}
