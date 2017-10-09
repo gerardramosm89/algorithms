@@ -29,6 +29,4 @@ function hasPair(arr, target) {
     console.log('endIndex is: ', endIndex);
   }
 }
-
-// console.log(hasPair(test1, target));
 console.log(hasPair(test1, target));

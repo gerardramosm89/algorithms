@@ -6,17 +6,14 @@
 	We want to shoot for O(n) time complexity
 */
 
-// let numArray = [1,6,4,5,3,3];
 let numArray = [40, 11, 19, 17, -12];
 
 
 function twoSum(numArray, sum) {
 	var pairs = [];
 	var hashTable = {};
-	// numArray.map(num => {
-	// 	if (!hashTable[num]) hashTable[num] = 1
-	// });
 	var pairs = [];
+
 	for (let i = 0; i < numArray.length; i++) {
 		var curNum = numArray[i];
 		var counterPart = sum - curNum;
