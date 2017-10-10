@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Welcome To Random Dog Pictures</h1>
+      <img id="photo" src="https:\/\/dog.ceo\/api\/img\/deerhound-scottish\/n02092002_6780.jpg" alt="">
+      <div class="button-container">
+          <button id="btn">Get Random Dog!</button>
+      </div>
+    </div>
+    <style>
+      .button-container {
+        width: 50%;
+        margin: auto;
+      }
+      #id {
+        margin: auto;
+      }
+    </style>
+    <script>
+      var btn = document.querySelector('#btn');
+      var img = document.querySelector('img');
+      btn.addEventListener('click', () => {
+        console.log('button was clicked');
+        btnClick();
+      });
+      function btnClick() {
+        var XHR = new XMLHttpRequest();
+        XHR.onreadystatechange = () => {
+          if (XHR.readyState == 4 && XHR.status >= 200) {
+            var response = JSON.parse(XHR.responseText);
+            var url = response.message;
+            img.src = url;
+            console.log(response.message);
+          }
+        }
+        XHR.open('GET', 'https://dog.ceo/api/breeds/image/random');
+        XHR.send();
+      }
+    </script>
+    <script src="pg.js"></script>
+  </body>
+</html>
