@@ -4,6 +4,22 @@
 
   </head>
   <body>
-
+    <script>
+      var url = 'https://api.github.com/users/gerardramosm89';
+      var options = {
+        method: 'GET'
+      }
+      fetch(url, options)
+      .then(data => {
+        if (!data.ok) {
+          throw Error('some custom error');
+        } else {
+          console.log('everything was fine');
+          return data.json()
+        }
+      })
+      .then(data => console.log(data))
+      .catch(err => console.log("Error was: ", err));
+    </script>
   </body>
 </html>
