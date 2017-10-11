@@ -33,8 +33,6 @@ function moveZeros(arr) {
     }
     readIndex--; 
   }
-  console.log(`readIndex is: ${readIndex}`);
-  console.log(`writeIndex is: ${writeIndex}`)
   for (let i = writeIndex; i >= 0; i--) {
     arr[writeIndex] = 0;
     writeIndex--;

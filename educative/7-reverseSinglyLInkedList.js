@@ -24,5 +24,3 @@ ll.insertToHead(new Node(432, null));
 ll.insertToHead(new Node(235, null));
 ll.insertToHead(new Node(3, null));
 ll.traverse()
-// console.log(`ll is: ${JSON.stringify(ll)}`);
-// console.log(`ll.head is: ${JSON.stringify(ll.head)}`);
