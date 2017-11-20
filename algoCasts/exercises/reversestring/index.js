@@ -29,6 +29,7 @@ const reverse = (str) => {
   return str.split('').reduce((reversed, char) => {
     return char + reversed;
   }, '');
+  debugger;
 }
 console.log(reverse('apple'));
 module.exports = reverse;
