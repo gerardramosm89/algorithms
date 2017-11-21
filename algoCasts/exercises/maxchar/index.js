@@ -10,7 +10,7 @@ function maxChar(str) {
   let highestVal = 0;
   str.split('').map(char => {
     if(list[char]) list[char] += 1;
-    else(list[char] = 1);
+    else list[char] = 1;
     if (list[char] > highestVal) {
       highestVal = list[char];
       currentHighest = char;
