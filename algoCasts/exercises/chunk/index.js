@@ -26,12 +26,18 @@ function chunk(array, size) {
   return chunked;
 }
 
-// function chunk(array, size) {
-//   const result = [];
-//   for (let el of array) {
-//     console.log('el: ', el);
-//   }
-//   console.log('result: ', result);
-// }
+// Second solution
+
+function chunk(array, size) {
+  const chunked = [];
+  let index = 0;
+  while (index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
+  console.log('chunked: ', chunked);
+  return chunked;
+}
+
 chunk([44,324,543,144,545], 2);
 module.exports = chunk;
