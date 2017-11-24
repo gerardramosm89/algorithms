@@ -9,10 +9,13 @@
 
 function capitalize(str) {
   let newStr = str.split(' ');
-  for (let x of newStr) {
-    console.log(x[0] = x[0].toUpperCase());
-    console.log(x);
+  let result = [];
+  for (let x in newStr) {
+    console.log(newStr[x].split('')[0].toUpperCase() + newStr[x].slice(1))
+    result.push(newStr[x].split('')[0].toUpperCase() + newStr[x].slice(1))
   }
+  console.log(result.join(' '))
+  return result.join(' ')
 }
 capitalize('a short sentence');
 module.exports = capitalize;
