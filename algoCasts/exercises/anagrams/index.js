@@ -27,5 +27,5 @@ function buildCharMap(str) {
   }
   return charMap;
 }
-anagrams('hello world', 'hello world');
+console.log(false === anagrams('hello aaaaa', 'hello world'));
 module.exports = anagrams;
