@@ -1,7 +1,3 @@
-#####################################
-### WELCOME TO YOUR OOP PROJECT #####
-#####################################
-
 # For this project you will be using OOP to create a card game. This card game will
 # be the card game "War" for two players, you an the computer. If you don't know
 # how to play "War" here are the basic rules:
@@ -27,6 +23,7 @@
 # https://en.wikipedia.org/wiki/War_(card_game)
 
 from random import shuffle
+from future import print
 
 # Two useful variables for creating Cards.
 SUITE = 'H D S C'.split()
@@ -39,26 +36,100 @@ class Deck:
     the players. It will use SUITE and RANKS to create the deck. It should also
     have a method for splitting/cutting the deck in half and Shuffling the deck.
     """
-    pass
+    def __init__(self):
+        print('Creating New Ordered Deck')
+        self.all_cards = [(s,r) for s in SUITE for r in RANKS]
+
+    def shuffle(self):
+        print('currently shuffling deck')
+        shuffle(self.all_cards)
+
+    def split_in_half(self):
+        return (self.all_cards[:26], self.all_cards[26:])
 
 class Hand:
     '''
     This is the Hand class. Each player has a Hand, and can add or remove
     cards from that hand. There should be an add and remove card method here.
     '''
-    pass
+    def __init__(self, cards):
+        self.cards = cards
+    
+    def __str__(self):
+        return 'Contains {} cards'.format(len(self.cards))
+
+    def add(self, added_cards):
+        self.cards.extend(added_cards)
+
+    def remove_card(self):
+        return self.cards.pop()
 
 class Player:
     """
     This is the Player class, which takes in a name and an instance of a Hand
     class object. The Payer can then play cards and check if they still have cards.
     """
-    pass
+    def __init__(self, name, hand):
+        self.name = name
+        self.hand = hand
 
+    def play_card(self):
+        drawn_card = self.hand.remove_card()
+        print('{} has placed : {}'.format(self.name, drawn_card))
+        print("\n")
+        return drawn_card
+
+    def remove_war_cards(self):
+        war_cards = []
+        for x in range(3):
+            war_cards.append(self.hand.cards.pop())
+        return war_cards
+
+    def still_has_cards(self):
+        """
+        Will return true if player still has cards left
+        """
+        return len(self.hand.cards) != 0
 
 ######################
 #### GAME PLAY #######
 ######################
+
+# Create new deck and split it in half:
+d = Deck()
+d.shuffle()
+half1,half2 = d.split_in_half()
+
+# Creating both players, CPU vs Human
+comp = Player("computer", Hand(half1))
+name = input("What is your name?")
+user = Player(name,Hand(half2))
+
+total_rounds = 0
+war_count = 0
+
+while user.still_has_cards() and comp.still_has_cards():
+    total_rounds += 1
+    print("Time for a new round")
+    print("Her eare the current standings")
+    print(user.name+"has the count: "+str(len(user.hand.cards)))
+    print(comp.name+"has the count: "+str(len(comp.hand.cards)))
+    print("play a card!")
+    print('\n')
+
+    table_cards = []
+
+    c_card = comp.play_card()
+    p_card = user.play_card()
+
+    table_cards.append(c_card)
+    table_cards.append(p_card)
+
+    if c_card[1] == p_card[1]:
+        war_count += 1
+
+
+
 print("Welcome to War, let's begin...")
 
 # Use the 3 classes along with some logic to play a game of war!
