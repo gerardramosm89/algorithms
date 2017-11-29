@@ -30,5 +30,8 @@ function steps(n) {
     console.log(stair);  
   }
 }
+
+// Recursive approach
+
 steps(4);
 module.exports = steps;
