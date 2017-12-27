@@ -25,6 +25,4 @@ function memoFib(index, cache) {
 	return cache[index];
 }
 
-// console.log(fibonacci(3));
-
 console.log(memoFib(8));
